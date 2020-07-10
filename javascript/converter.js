@@ -1,5 +1,4 @@
-function myFunction() {
-	let form = document.getElementById("myForm");
+function myFunction(form) {
 	
 	let string= "{\n\"name\": \"" + form.elements[0].value + "\",\n";
 	string += "\"location\": \"" + form.elements[1].value + "\",\n";
