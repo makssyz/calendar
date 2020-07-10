@@ -8,15 +8,56 @@
     <title>Calendar</title>
 </head>
 <body>
-<form action="">
-    <p>
-        <label for="name">Entry</label>
-        <input id="name" type="text">
-    </p>
-    <p>
-        <label for="date">Date</label>
-        <input id="date" type="date">
-    </p>
+<form action="#">
+    <table>
+        <h1>Add an Event</h1>
+        <tr>
+            <td><label for="title">Title</label></td>
+            <td><input id="title" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="start">Start</label></td>
+            <td><input id="start" type="datetime-local"></td>
+        </tr>
+        <tr>
+            <td><label for="end">End</label></td>
+            <td><input id="end" type="datetime-local"></td>
+        </tr>
+        <tr>
+            <td><label for="organizer">Organizer</label></td>
+            <td><input id="organizer" type="email"></td>
+        </tr>
+        <tr>
+            <td><label for="status">Status</label></td>
+            <td>
+                <select id="status">
+                    <option value="free">Free</option>
+                    <option value="busy">Busy</option>
+                    <option value="tentative">Tentative</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="allday">All Day</label></td>
+            <td><input id="allday" type="checkbox"></td>
+        </tr>
+        <tr>
+            <td><label for="webpage">Webpage</label></td>
+            <td><input id="webpage" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="imageurl">Image</label></td>
+            <td><input type="file" id="imageurl" accept="image/*"></td>
+        </tr>
+        <tr>
+            <td><label for="categories">Categories</label></td>
+            <td><input id="categories" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="extra">Extra</label></td>
+            <td><input id="extra" type="text"></td>
+        </tr>
+    </table>
     <p><input type="submit"></p>
 </form>
 </body>
