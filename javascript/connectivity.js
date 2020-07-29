@@ -27,7 +27,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 
 //---------------------------------------------
 
-function getEvents(url, user) {
+function getCalendarEvents(url, user) {
 	return new Promise(function (resolve, reject) {
 		$.get(url + user + "/events")
 			.done(function (data) {
@@ -39,15 +39,15 @@ function getEvents(url, user) {
 	});
 }
 
-function createEvent(url, user, event){
+function createCalendarEvent(url, user, event){
 	$.post(url + user + "/events", JSON.stringify(event));
 }
 
-function deleteEvent(url, user, id){
+function deleteCalendarEvent(url, user, id){
 	$.delete(url + user + "/events" + "/" + id);
 }
 
-function updateEvent(url, user, id, event){
+function updateCalendarEvent(url, user, id, event){
 	$.put(url + user + "/events" + "/" + id, JSON.stringify(event));
 }
 
@@ -102,7 +102,7 @@ function removeFromCategory(url, user, eventId, categoryId){
 
 //examples-------------------------------------------
   
-/*createEvent(host, username, {
+/*createCalendarEvent(host, username, {
 		"title": "And one more test",
 		"location": "Stuttgart",
 		"organizer": "dhbw@radicalsimplicity.com",
@@ -116,9 +116,9 @@ function removeFromCategory(url, user, eventId, categoryId){
 		"extra": null
 	});*/
 
-//deleteEvent(host, username, 47);
+//deleteCalendarEvent(host, username, 47);
 
-/*updateEvent(host, username, 45, {
+/*updateCalendarEvent(host, username, 45, {
 		"title": "And one more test",
 		"location": "Oberfranken",
 		"organizer": "dhbw@radicalsimplicity.com",
@@ -134,7 +134,7 @@ function removeFromCategory(url, user, eventId, categoryId){
 	
 //createCategory(host, username, "Studium");
 
-/*getEvents(host, username).then(function (data) {
+/*getCalendarEvents(host, username).then(function (data) {
 	console.log(data);
   }).catch(function (e) {
 	console.warn(e)
