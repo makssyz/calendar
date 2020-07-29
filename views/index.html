@@ -6,8 +6,53 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calendar</title>
+	
+	<!--<script src= ../javascript/converter.js> </script>-->
+	<script src= https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+	<script src= ../javascript/connectivity.js> </script>
 </head>
 <body>
+
+<script>
+	function myFunction(id) {
+	let form=document.getElementById(id);
+	
+	let string= "{\n\"title\": \"" + form.elements[0].value + "\",\n";
+	string += "\"location\": \"" + form.elements[1].value + "\",\n";
+	string += "\"organizer\": \"" + form.elements[2].value + "\",\n";
+	string += "\"start\": \"" + form.elements[3].value + "\",\n";
+	string += "\"end\": \"" + form.elements[4].value + "\",\n";
+	string += "\"status\": \"" + form.elements[5].value + "\",\n";
+	string += "\"allday\": " + form.elements[6].checked + ",\n";
+	string += "\"webpage\": \"" + form.elements[7].value + "\",\n";
+	string += "\"imagedata\": ";
+	imagePicker = document.getElementById("imageurl");
+	if(!(imagePicker.files && imagePicker.files[0])){
+			string += "null,\n";
+			string += "\"categories\": [],\n";
+			string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
+			console.log("Yes you're here:\n" + string);
+	
+			return JSON.parse(string);
+		}else{
+		    var fr = new FileReader();
+			fr.readAsDataURL(imagePicker.files[0]);
+			fr.onload = (function (data) {
+				string += "\"";
+				string += fr.result;
+				string += "\",\n";
+				string += "\"categories\": [],\n";
+				string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
+				console.log("Yes you're here:\n" + string);
+				console.table(JSON.parse(string));
+	
+				return JSON.parse(string);
+			});
+		}
+	
+}
+</script>
+
 <form action="#" id="myForm">
     <table>
         <h1>Add an Event</h1>
@@ -35,9 +80,9 @@
             <td><label for="status">Status</label></td>
             <td>
                 <select id="status">
-                    <option value="free">Free</option>
-                    <option value="busy">Busy</option>
-                    <option value="tentative">Tentative</option>
+                    <option value="Free">Free</option>
+                    <option value="Busy">Busy</option>
+                    <option value="Tentative">Tentative</option>
                 </select>
             </td>
         </tr>
@@ -62,7 +107,7 @@
             <td><input id="extra" type="text"></td>
         </tr>
     </table>
-    <p><input type="submit"></p>
+    <p><input type="submit" onclick="createCalendarEvent('http://dhbw.radicalsimplicity.com/calendar/', 'wow', myFunction('myForm'))"></p>
 </form>
 </body>
 </html>
