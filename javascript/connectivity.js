@@ -27,7 +27,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 
 //---------------------------------------------
 
-function getEvents(url, user) {
+function getCalendarEvents(url, user) {
 	return new Promise(function (resolve, reject) {
 		$.get(url + user + "/events")
 			.done(function (data) {

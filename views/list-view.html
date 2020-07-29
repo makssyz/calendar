@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../javascript/connectivity.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Radical Simplicity</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Event Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Month</a>
+            </li>
+        </ul>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Account</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+            </form>
+        </nav>
+    </div>
+</nav>
+
+<div>
+    <button onclick="getData()">Show Events</button>
+</div>
+
+<div class="accordion" id="calendarListView">
+<!--    <div class="card">-->
+<!--        <div class="card-header" id="headingOne">-->
+<!--            <h2 class="mb-0">-->
+<!--                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+<!--                    Event #1-->
+<!--                </button>-->
+<!--            </h2>-->
+<!--        </div>-->
+<!--        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#calendarListView">-->
+<!--            <div class="card-body">-->
+<!--                <table class="table table-sm table-striped">-->
+<!--                    <tr>-->
+<!--                        <td><label for="location">Location</label></td>-->
+<!--                        <td><label id="location"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="organizer">Organizer</label></td>-->
+<!--                        <td><label id="organizer"></label></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card">-->
+<!--        <div class="card-header" id="headingTwo">-->
+<!--            <h2 class="mb-0">-->
+<!--                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">-->
+<!--                    Collapsible Group Item #2-->
+<!--                </button>-->
+<!--            </h2>-->
+<!--        </div>-->
+<!--        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#calendarListView">-->
+<!--            <div class="card-body">-->
+<!--                <p>-->
+<!--                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
+<!--                </p>-->
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <td><label for="start">Start</label></td>-->
+<!--                        <td><label id="start"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="end">End</label></td>-->
+<!--                        <td><label id="end"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="status">Status</label></td>-->
+<!--                        <td><label id="status"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="allday">All Day</label></td>-->
+<!--                        <td><label id="allday"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="webpage">Webpage</label></td>-->
+<!--                        <td><label id="webpage"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="imageurl">Image</label></td>-->
+<!--                        <td><label id="imageurl"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="categories">Categories</label></td>-->
+<!--                        <td><label id="categories"></label></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td><label for="extra">Extra</label></td>-->
+<!--                        <td><label id="extra"></label></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+<script>
+
+    let listView = document.getElementById("calendarListView");
+
+    function constructCalendarEvent(calendarEvents) {
+
+        listView.innerHTML =
+            "<div class=\"card\">\n" +
+            "    <div class=\"card-header\" id=\"headingOne\">\n" +
+            "        <h2 class=\"mb-0\">\n" +
+            "            <button class=\"btn btn-link btn-block text-left collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n" +
+            "                Event #1\n" +
+            "            </button>\n" +
+            "        </h2>\n" +
+            "    </div>\n" +
+            "    <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#calendarListView\">\n" +
+            "        <div class=\"card-body\">\n" +
+            "            <table class=\"table table-sm table-striped\">\n" +
+            "                <tr>\n" +
+            "                    <td><label for=\"location\">Location</label></td>\n" +
+            "                    <td><label id=\"location\">" + calendarEvents[0].location + "</label></td>\n" +
+            "                </tr>\n" +
+            "                <tr>\n" +
+            "                    <td><label for=\"organizer\">Organizer</label></td>\n" +
+            "                    <td><label id=\"organizer\">" + calendarEvents[0].organizer + "</label></td>\n" +
+            "                </tr>\n" +
+            "            </table>\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "</div>"
+    }
+
+    function getData() {
+        getCalendarEvents("http://dhbw.radicalsimplicity.com/calendar/", "wow").then(function (data) {
+            constructCalendarEvent(data)
+            console.log(data);
+        }).catch(function (e) {
+            console.warn(e)
+        });
+    }
+
+    // function constructTable(selector) {
+    //
+    //     // Getting the all column names
+    //     // let cols = Headers(list, selector);
+    //
+    //     // Traversing the JSON data
+    //     for (let i = 0; i < list.length; i++) {
+    //         let row = $('<tr/>');
+    //         for (let colIndex = 0; colIndex < cols.length; colIndex++)
+    //         {
+    //             let val = list[i][cols[colIndex]];
+    //
+    //             // If there is any key, which is matching
+    //             // with the column name
+    //             if (val == null) val = "";
+    //             row.append($('<td/>').html(val));
+    //         }
+    //
+    //         // Adding each row to the table
+    //         $(selector).append(row);
+    //     }
+    // }
+
+    // function Headers(list, selector) {
+    //     let columns = [];
+    //     let header = $('<tr/>');
+    //
+    //     for (let i = 0; i < list.length; i++) {
+    //         let row = list[i];
+    //
+    //         for (let k in row) {
+    //             if ($.inArray(k, columns) == -1) {
+    //                 columns.push(k);
+    //
+    //                 // Creating the header
+    //                 header.append($('<th/>').html(k));
+    //             }
+    //         }
+    //     }
+    //
+    //     // Appending the header to the table
+    //     $(selector).append(header);
+    //     return columns;
+    // }
+</script>
+
+<script>
+
+
+    function loadJSON(callback) {
+
+        let xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', 'my_data.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState === 4 && xobj.status === "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
