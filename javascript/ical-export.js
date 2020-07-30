@@ -1,5 +1,3 @@
-// import https://raw.githubusercontent.com/matthiasanderer/icsFormatter/master/icsFormatter.js
-
 let buildICSEntry = function(event){
 	let title = event.title;
 	let place = event.location;
