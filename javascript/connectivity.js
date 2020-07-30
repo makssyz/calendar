@@ -29,7 +29,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 
 function getCalendarEvents(url, user) {
 	return new Promise(function (resolve, reject) {
-		$.get(url + user + "/events")
+		jQuery.get(url + user + "/events")
 			.done(function (data) {
 				resolve(data)
 			})
@@ -40,15 +40,15 @@ function getCalendarEvents(url, user) {
 }
 
 function createEvent(url, user, event){
-	$.post(url + user + "/events", JSON.stringify(event));
+	jQuery.post(url + user + "/events", JSON.stringify(event));
 }
 
 function deleteEvent(url, user, id){
-	$.delete(url + user + "/events" + "/" + id);
+	jQuery.delete(url + user + "/events" + "/" + id);
 }
 
 function updateEvent(url, user, id, event){
-	$.put(url + user + "/events" + "/" + id, JSON.stringify(event));
+	jQuery.put(url + user + "/events" + "/" + id, JSON.stringify(event));
 }
 
 //missing retrieve element //not needed
@@ -56,7 +56,7 @@ function updateEvent(url, user, id, event){
 //---------------------------------------------
 function getCategories(url, user){
 	return new Promise(function (resolve, reject) {
-		$.get(url + user + "/categories")
+		jQuery.get(url + user + "/categories")
 			.done(function (data) {
 				resolve(data)
 			})
@@ -67,7 +67,7 @@ function getCategories(url, user){
 }
 
 function createCategory(url, user, name){
-	$.post(url + user + "/categories", "{ \"name\": \"" + name + "\" }",
+	jQuery.post(url + user + "/categories", "{ \"name\": \"" + name + "\" }",
 		function(data, status){
 		//alert("Data: " + data + "\nStatus: " + status);
 	});
@@ -76,7 +76,7 @@ function createCategory(url, user, name){
 function resolveCategory(url, user, id){
 //returns string
 	return new Promise(function (resolve, reject) {
-		$.get(url + user + "/categories/" + id)
+		jQuery.get(url + user + "/categories/" + id)
 			.done(function (data) {
 				resolve(data.name)
 			})
@@ -87,17 +87,17 @@ function resolveCategory(url, user, id){
 }
 
 function deleteCategory(url, user, id){
-	$.delete(url + user + "/categories/" + id);
+	jQuery.delete(url + user + "/categories/" + id);
 }
 
 //--------------------------------------------
 
 function addToCategory(url, user, eventId, categoryId){
-	$.post(url + user + "/categories/" + categoryId + "/" + eventId);
+	jQuery.post(url + user + "/categories/" + categoryId + "/" + eventId);
 }
 
 function removeFromCategory(url, user, eventId, categoryId){
-	$.delete(url + user + "/categories/" + categoryId + "/" + eventId);
+	jQuery.delete(url + user + "/categories/" + categoryId + "/" + eventId);
 }
 
 //examples-------------------------------------------
