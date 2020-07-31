@@ -31,11 +31,11 @@ function getCalendarEvents(url, user) {
 	return new Promise(function (resolve, reject) {
 		$.get(url + user + "/events")
 			.done(function (data) {
-				resolve(data)
+				resolve(data);
 			})
 			.fail(function (e) {
-				reject(e)
-			})
+				reject(e);
+			});
 	});
 }
 
@@ -58,19 +58,16 @@ function getCategories(url, user){
 	return new Promise(function (resolve, reject) {
 		$.get(url + user + "/categories")
 			.done(function (data) {
-				resolve(data)
+				resolve(data);
 			})
 			.fail(function (e) {
-				reject(e)
-			})
+				reject(e);
+			});
 	});
 }
 
 function createCategory(url, user, name){
-	$.post(url + user + "/categories", "{ \"name\": \"" + name + "\" }",
-		function(data, status){
-		//alert("Data: " + data + "\nStatus: " + status);
-	});
+	$.post(url + user + "/categories", "{ \"name\": \"" + name + "\" }");
 }
 
 function resolveCategory(url, user, id){
@@ -78,11 +75,11 @@ function resolveCategory(url, user, id){
 	return new Promise(function (resolve, reject) {
 		$.get(url + user + "/categories/" + id)
 			.done(function (data) {
-				resolve(data.name)
+				resolve(data.name);
 			})
 			.fail(function (e) {
-				reject(e)
-			})
+				reject(e);
+			});
 	});
 }
 
