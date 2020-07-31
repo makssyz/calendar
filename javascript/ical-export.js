@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 let buildICSEntry = function(event){
 	let title = event.title;
 	let place = event.location;
@@ -7,7 +8,7 @@ let buildICSEntry = function(event){
 	let description = event.extra;
 
 	download(makeICS(organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
-}
+};
 
 let makeICS = function(organizerMail, start, end, place, title, description){
 	let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\n";
@@ -20,7 +21,7 @@ let makeICS = function(organizerMail, start, end, place, title, description){
 	ics += "END:VEVENT\nEND:VCALENDAR\n";
 
 	return ics;
-}
+};
  
 let download = function(download, filename){
 	var element = document.createElement('a');
@@ -33,4 +34,4 @@ let download = function(download, filename){
 	element.click();
 
 	document.body.removeChild(element);
-}
+};
