@@ -7,11 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../javascript/list-view.js"></script>
     <script src="../javascript/connectivity.js"></script>
+    <script src="../javascript/cookie-jar.js"></script>
+    <script src="../javascript/event-editor.js"></script>
     <title>Create Events</title>
 </head>
 
 <body>
+
+<div style="position: fixed; right: 5em; bottom: 5em">
+    <form action="javascript:editCalendarEvent()">
+        <button type="submit" class="btn btn-primary">Dev Button</button>
+    </form>
+</div>
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,7 +46,7 @@
                     </div>
                     <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
-                <button class="btn btn-outline-success my-2 my-sm-0" onclick="getData()">Login</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="login()">Login</button>
             </form>
         </nav>
     </div>
@@ -45,7 +54,7 @@
 <br>
 
 <div class="container">
-    <form id="createEventForm" action="javascript:createEvent(url, username, convertFormToObject('createEventForm'))">
+    <form id="createEventForm" action="javascript:createCalendarEvent(url, getCookie('username'), convertFormToObject('createEventForm'))">
         <!--Title-->
         <div class="col-auto">
             <label class="sr-only" for="title">Title</label>
@@ -221,7 +230,7 @@
             </div>
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-success">Create!</button>
+            <button id="createEventButton" type="submit" class="btn btn-success">Create!</button>
         </div>
     </form>
 </div>
