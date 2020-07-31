@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/1a5668885f.js" crossorigin="anonymous"></script>
     <script src="../javascript/connectivity.js"></script>
     <title>Create Events</title>
 </head>
@@ -145,6 +144,7 @@
                     <option value="Busy">Busy</option>
                     <option value="Tentative">Tentative</option>
                 </select>
+
             </div>
         </div>
         <!--All Day-->
@@ -226,6 +226,45 @@
     </form>
 </div>
 
+  <script>
+	function myFunction(id) {
+	let form=document.getElementById(id);
+	
+	let string= "{\n\"title\": \"" + form.elements[0].value + "\",\n";
+	string += "\"location\": \"" + form.elements[1].value + "\",\n";
+	string += "\"organizer\": \"" + form.elements[2].value + "\",\n";
+	string += "\"start\": \"" + form.elements[3].value + "\",\n";
+	string += "\"end\": \"" + form.elements[4].value + "\",\n";
+	string += "\"status\": \"" + form.elements[5].value + "\",\n";
+	string += "\"allday\": " + form.elements[6].checked + ",\n";
+	string += "\"webpage\": \"" + form.elements[7].value + "\",\n";
+	string += "\"imagedata\": ";
+	imagePicker = document.getElementById("imageurl");
+	if(!(imagePicker.files && imagePicker.files[0])){
+			string += "null,\n";
+			string += "\"categories\": [],\n";
+			string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
+			console.log("Yes you're here:\n" + string);
+	
+			return JSON.parse(string);
+		}else{
+		    var fr = new FileReader();
+			fr.readAsDataURL(imagePicker.files[0]);
+			fr.onload = (function (data) {
+				string += "\"";
+				string += fr.result;
+				string += "\",\n";
+				string += "\"categories\": [],\n";
+				string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
+				console.log("Yes you're here:\n" + string);
+				console.table(JSON.parse(string));
+	
+				return JSON.parse(string);
+			});
+		}
+	
+}
+</script>
 <script src="../javascript/connectivity.js"></script>
 <script src="../javascript/converter.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
