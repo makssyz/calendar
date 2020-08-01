@@ -1,16 +1,16 @@
 let url = "http://dhbw.radicalsimplicity.com/calendar/";
-let view = document.getElementById("calendarListView");
+let listView = document.getElementById("calendarListView");
 
-console.log("List View: " + view)
+console.log("List View: " + listView)
 
 function constructCalendarEvent(calendarEvents) {
 
-    view.innerHTML = "";
+    listView.innerHTML = "";
 
     announceWhenListIsEmpty(calendarEvents);
 
     calendarEvents.forEach(calendarEvent => {
-        addEventToHtmlString(view, calendarEvent)
+        addEventToHtmlString(listView, calendarEvent)
     })}
 
 function login() {
@@ -27,23 +27,46 @@ function login() {
 
 function getData() {
 
-    let username = getCookie("username")
-    console.log("Getting data from " + url + username + "/events")
+    let username = getCookie("username");
+    console.log("Getting data from " + url + username + "/events");
     if (username === "") return;
     setUsernameInput(username);
 
     getCalendarEvents(url, username).then(function(data) {
-        constructCalendarEvent(data)
+        constructCalendarEvent(data);
         console.log(data);
     }).catch(function (e) {
+        console.warn(e);
+    });
+}
+
+// Wrapper functions for connectivity
+function addCalendarEventInView(calendarEvent) {
+    createCalendarEvent(url, getCookie("username"), calendarEvent)
+        .then(function() {
+            getData();
+            displayListViewPage();
+        }).catch(function (e) {
         console.warn(e)
     });
 }
 
 function deleteCalendarEventInView(calendarEventId) {
-    deleteCalendarEvent(url, getCookie('username'), calendarEventId)
-    let deletedEvent = document.getElementById("card" + calendarEventId)
-    deletedEvent.parentElement.removeChild(deletedEvent)
+    deleteCalendarEvent(url, getCookie("username"), calendarEventId);
+    let deletedEvent = document.getElementById("card" + calendarEventId);
+    deletedEvent.parentElement.removeChild(deletedEvent);
+}
+
+function editCalendarEventInView(editedEvent, calendarEventId) {
+    updateCalendarEvent(url, getCookie("username"), calendarEventId, editedEvent)
+        .then(function() {
+            console.log("editedEvent:");
+            console.table(editedEvent);
+            console.log("calendarEventId: " + calendarEventId);
+            getData();
+        }).catch(function (e) {
+            console.warn(e)
+    });
 }
 
 function setUsernameInput(username) {
@@ -52,7 +75,7 @@ function setUsernameInput(username) {
 
 function announceWhenListIsEmpty(calendarEvents) {
     if (calendarEvents.length === 0) {
-        view.innerHTML =
+        listView.innerHTML =
             "<div class=\"card\">\n" +
             "    <div class=\"card-header\">\n" +
             "        <div class=\"mb-0\">\n" +
@@ -68,15 +91,19 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
 }
 
 function createHtmlString(calendarEvent) {
-    return "<div id='card" + calendarEvent.id + "' class=\"card\">\n" +
-             createHeaderString(calendarEvent)+
+    return "<div id=\"card" + calendarEvent.id + "\" class=\"card\">\n" +
+             createContentString(calendarEvent) +
+        "</div>"
+}
+
+function createContentString(calendarEvent) {
+    return createHeaderString(calendarEvent)+
         "    <div id=\"collapse" + calendarEvent.id + "\" class=\"collapse\" aria-labelledby=\"calendarEvent" + calendarEvent.id + "\" data-parent=\"#calendarListView\">\n" +
         "        <div class=\"card-body\">\n" +
-                     createTableString(calendarEvent) +
-                     createButtonString(calendarEvent) +
+        createTableString(calendarEvent) +
+        createButtonString(calendarEvent) +
         "        </div>\n" +
-        "    </div>\n" +
-        "</div>"
+        "    </div>\n"
 }
 
 function createHeaderString(calendarEvent) {
@@ -138,7 +165,7 @@ function createTableString(calendarEvent) {
 }
 
 function createButtonString(calendarEvent) {
-    return "            <button type=\"button\" class=\"btn btn-primary\" onclick='editCalendarEvent(" + JSON.stringify(calendarEvent) + ")'>\n" +
+    return "            <button type=\"button\" class=\"btn btn-primary\" onclick='editCreateFormToUpdateForm(" + JSON.stringify(calendarEvent) + ")'>\n" +
         "                <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-pencil\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z\"/>\n" +

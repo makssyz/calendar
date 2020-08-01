@@ -39,18 +39,38 @@ function getCalendarEvents(url, user) {
 	});
 }
 
-function createCalendarEvent(url, user, event){
-	console.log("Event: " + JSON.stringify(event))
-	console.log("Posting event to " + url + user + "/events")
-	$.post(url + user + "/events", JSON.stringify(event));
+function createCalendarEvent(url, user, event) {
+	return new Promise(function (resolve, reject) {
+		$.post(url + user + "/events", JSON.stringify(event))
+			.done(function (data) {
+				console.log("Event: " + JSON.stringify(event));
+				console.log("Posting event to " + url + user + "/events");
+				resolve(data);
+			})
+			.fail(function (e) {
+				reject(e);
+			});
+	});
 }
 
 function deleteCalendarEvent(url, user, id){
+	console.log("Event ID: " + id)
+	console.log("Deleting event from " + url + user + "/events")
 	$.delete(url + user + "/events" + "/" + id);
 }
 
-function updateCalendarEvent(url, user, id, event){
-	$.put(url + user + "/events" + "/" + id, JSON.stringify(event));
+function updateCalendarEvent(url, user, id, event) {
+	return new Promise(function (resolve, reject) {
+		$.put(url + user + "/events" + "/" + id, JSON.stringify(event))
+			.done(function (data) {
+				console.log("Event: " + JSON.stringify(event))
+				console.log("Update event to " + url + user + "/events")
+				resolve(data);
+			})
+			.fail(function (e) {
+				reject(e);
+			});
+	});
 }
 
 //missing retrieve element //not needed
