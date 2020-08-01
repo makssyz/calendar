@@ -1,6 +1,8 @@
 let url = "http://dhbw.radicalsimplicity.com/calendar/";
 let listView = document.getElementById("calendarListView");
 
+console.log("List View: " + listView)
+
 function constructCalendarEvent(calendarEvents) {
 
     listView.innerHTML = ""
@@ -28,7 +30,7 @@ function getData() {
     let username = getCookie("username")
     console.log("Getting data from " + url + username + "/events")
     if (username === "") return;
-    document.getElementById("username").value = username;
+    setUsernameInput(username);
 
     getCalendarEvents(url, username).then(function(data) {
         constructCalendarEvent(data)
@@ -36,6 +38,10 @@ function getData() {
     }).catch(function (e) {
         console.warn(e)
     });
+}
+
+function setUsernameInput(username) {
+    document.getElementById("username").value = username;
 }
 
 function announceWhenListIsEmpty(calendarEvents) {
@@ -130,7 +136,7 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
         "                    <path d=\"M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z\"/>\n" +
-        "                </svg> Download .ical\n" +
+        "                </svg> Download\n" +
         "            </button>\n" +
         "        </div>\n" +
         "    </div>\n" +

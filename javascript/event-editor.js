@@ -3,22 +3,30 @@ function editCalendarEvent(calendarEvent) {
 
     setCookie("event", JSON.stringify(calendarEvent), 1)
 
-    window.location.href = "index.html"
-
+    redirect();
     console.log(calendarEvent);
     changeButton(calendarEvent);
     loadEventIntoForm(calendarEvent);
+}
+
+function redirect() {
+    displayFormPage()
 }
 
 function changeButton (calendarEvent) {
     let form = document.getElementById("createEventForm");
     let button = document.getElementById("createEventButton");
 
+    // let calendarEvent = getCookie("event");
+
+    console.log(calendarEvent);
+
+
     console.log(form)
     console.log(button)
 
-    form.action = "updateCalendarEvent(" + url + "," + username + "," + calendarEvent.id + "," + JSON.stringify(calendarEvent) + ")";
-    button.class = "btn btn-primary";
+    // form.action = "updateCalendarEvent(" + url + "," + username + "," + calendarEvent.id + "," + JSON.stringify(calendarEvent) + ")";
+    button.className = "btn btn-primary";
     button.innerText = "Update!";
 
     console.log(form)
