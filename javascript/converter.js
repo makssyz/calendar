@@ -1,5 +1,5 @@
 function myFunction(id) {
-	let from=document.getElementById(id);
+	let form=document.getElementById(id);
 	
 	let string= "{\n\"name\": \"" + form.elements[0].value + "\",\n";
 	string += "\"location\": \"" + form.elements[1].value + "\",\n";
