@@ -58,21 +58,36 @@ function announceWhenListIsEmpty(calendarEvents) {
 }
 
 function addEventToHtmlString(htmlElement, calendarEvent) {
-    let start = new Date(calendarEvent.start);
-    let end = new Date(calendarEvent.end);
+    htmlElement.innerHTML += createHtmlString(calendarEvent);
+}
 
-    htmlElement.innerHTML +=
-        "<div class=\"card\">\n" +
-        "    <div class=\"card-header\" id=\"calendarEvent" + calendarEvent.id + "\">\n" +
+function createHtmlString(calendarEvent) {
+    return "<div class=\"card\">\n" +
+             createHeaderString(calendarEvent)+
+        "    <div id=\"collapse" + calendarEvent.id + "\" class=\"collapse\" aria-labelledby=\"calendarEvent" + calendarEvent.id + "\" data-parent=\"#calendarListView\">\n" +
+        "        <div class=\"card-body\">\n" +
+                     createTableString(calendarEvent) +
+                     createButtonString(calendarEvent) +
+        "        </div>\n" +
+        "    </div>\n" +
+        "</div>"
+}
+
+function createHeaderString(calendarEvent) {
+    return "    <div class=\"card-header\" id=\"calendarEvent" + calendarEvent.id + "\">\n" +
         "        <h2 class=\"mb-0\">\n" +
         "            <button class=\"btn btn-link btn-block text-left\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapse" + calendarEvent.id + "\" aria-expanded=\"true\" aria-controls=\"collapse" + calendarEvent.id + "\">\n" +
         "                " + calendarEvent.title + "\n" +
         "            </button>\n" +
         "        </h2>\n" +
-        "    </div>\n" +
-        "    <div id=\"collapse" + calendarEvent.id + "\" class=\"collapse\" aria-labelledby=\"calendarEvent" + calendarEvent.id + "\" data-parent=\"#calendarListView\">\n" +
-        "        <div class=\"card-body\">\n" +
-        "            <table class=\"table table-sm table-striped\">\n" +
+        "    </div>\n"
+}
+
+function createTableString(calendarEvent) {
+    let start = new Date(calendarEvent.start);
+    let end = new Date(calendarEvent.end);
+
+    return "            <table class=\"table table-sm table-striped\">\n" +
         "                <tr>\n" +
         "                    <th>Field</th>\n" +
         "                    <th>Value</th>\n" +
@@ -117,8 +132,11 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
         "                    <td>Extra</td>\n" +
         "                    <td>" + calendarEvent.extra + "</td>\n" +
         "                </tr>" +
-        "            </table>\n" +
-        "            <button type=\"button\" class=\"btn btn-primary\" onclick='editCalendarEvent(" + JSON.stringify(calendarEvent) + ")'>\n" +
+        "            </table>\n";
+}
+
+function createButtonString(calendarEvent) {
+    return "            <button type=\"button\" class=\"btn btn-primary\" onclick='editCalendarEvent(" + JSON.stringify(calendarEvent) + ")'>\n" +
         "                <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-pencil\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z\"/>\n" +
@@ -137,8 +155,5 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
         "                    <path fill-rule=\"evenodd\" d=\"M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z\"/>\n" +
         "                </svg> Download\n" +
-        "            </button>\n" +
-        "        </div>\n" +
-        "    </div>\n" +
-        "</div>"
+        "            </button>\n"
 }
