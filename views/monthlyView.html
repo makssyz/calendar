@@ -428,7 +428,18 @@
               </tbody> 
           </table>
         </div> 
-        <button class="button" id="add-button">Add Event</button>
+        <!--<button class="button" id="add-button">Add Event</button>-->
+		<div>
+			<form action="javascript:displayFormPage()">
+				<button type="submit" class="btn btn-success" id="add-button">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+						<path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+						<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+					</svg> Create
+				</button>
+			</form>
+		</div>
       </div>
     </div>
 	
@@ -579,8 +590,9 @@
 		$(".right-button").click({date: date}, next_year);
 		$(".left-button").click({date: date}, prev_year);
 		$(".month").click({date: date}, month_click);
-		$("#add-button").click({date: date}, new_event);
+		//$("#add-button").click({date: date}, new_event);
 		
+		updateCalendar(host, username);
 		// Set current month as active
 		$(".months-row").children().eq(date.getMonth()).addClass("active-month");
 		init_calendar(date);
@@ -703,6 +715,7 @@
 			$(this).removeClass("error-input");
 		})
 		// empty inputs and hide events
+		/*
 		$("#dialog input[type=text]").val('');
 		$("#dialog input[type=number]").val('');
 		$(".events-container").hide(250);
@@ -714,6 +727,7 @@
 			$("#dialog").hide(250);
 			$(".events-container").show(250);
 		});
+		
 		// Event handler for ok button
 		$("#ok-button").unbind().click({date: event.data.date}, function() {
 			var date = event.data.date;
@@ -735,6 +749,7 @@
 				init_calendar(date);
 			}
 		});
+		*/
 	}
 
 	// Adds a json event to event_data
@@ -852,11 +867,13 @@
 	};
 	
 	//fill events
-	getCalendarEvents(host, username).then(function (data) {
-		event_data["events"]=data;
-	  }).catch(function (e) {
-		console.warn(e)
-	  });
+	function updateCalendar(host, username) {
+		getCalendarEvents(host, username).then(function (data) {
+			event_data["events"]=data;
+		  }).catch(function (e) {
+			console.warn(e)
+		  });
+	}
   </script>
 </body>
 </html>
