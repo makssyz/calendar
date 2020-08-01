@@ -4,22 +4,23 @@
   <title>Calendar</title>
   <meta name="description" content="Calendar">
   <meta name="author" content="Charles Anderson">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  
   <style>
 	/* Overall body and content */
 	body { 
 		height: 100%;
 		width: 100%;
 		margin: 0;
-		background: #005C97;  /*005C97*/  
-		background: -webkit-linear-gradient(left, #363795, #005C97);
-		background: -moz-linear-gradient(left, #363795, #005C97);
-		background: -o-linear-gradient(left, #363795, #005C97);
-		background: linear-gradient(to right, #363795, #005C97); 
-		font-family: Helvetica;
-	} 
+	}
 	.content {
 		overflow: none;
-		max-width: 1000px; /*790px*/
+		max-width: 1000px;
 		padding: 0px 0;
 		height: 500px;
 		position: relative;
@@ -27,7 +28,7 @@
 		background: #52A0FD;
 		background: -moz-linear-gradient(right,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
 		background: -webkit-linear-gradient(right,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
-		background: linear-gradient(to left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);    
+		background: linear-gradient(to left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
 		border-radius: 3px;
 		box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 		-moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -189,6 +190,7 @@
 	.days-table, .dates-table, .months-table { 
 		border-collapse:separate; 
 		text-align: center;
+		width: 98%;
 	} 
 	.day { 
 		height: 26px;
@@ -452,13 +454,6 @@
   </div>
   <!-- Dialog Box-->
   
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  
   <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -558,6 +553,7 @@
   </script>
   
   <script>
+  //document.body.style.background = "red";
 	const months = [ 
 		"January", 
 		"February", 
