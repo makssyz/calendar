@@ -5,7 +5,7 @@ console.log("List View: " + listView)
 
 function constructCalendarEvent(calendarEvents) {
 
-    listView.innerHTML = ""
+    listView.innerHTML = "";
 
     announceWhenListIsEmpty(calendarEvents);
 
@@ -40,6 +40,12 @@ function getData() {
     });
 }
 
+function deleteCalendarEventInView(calendarEventId) {
+    deleteCalendarEvent(url, getCookie('username'), calendarEventId)
+    let deletedEvent = document.getElementById("card" + calendarEventId)
+    deletedEvent.parentElement.removeChild(deletedEvent)
+}
+
 function setUsernameInput(username) {
     document.getElementById("username").value = username;
 }
@@ -62,7 +68,7 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
 }
 
 function createHtmlString(calendarEvent) {
-    return "<div class=\"card\">\n" +
+    return "<div id='card" + calendarEvent.id + "' class=\"card\">\n" +
              createHeaderString(calendarEvent)+
         "    <div id=\"collapse" + calendarEvent.id + "\" class=\"collapse\" aria-labelledby=\"calendarEvent" + calendarEvent.id + "\" data-parent=\"#calendarListView\">\n" +
         "        <div class=\"card-body\">\n" +
@@ -88,10 +94,6 @@ function createTableString(calendarEvent) {
     let end = new Date(calendarEvent.end);
 
     return "            <table class=\"table table-sm table-striped\">\n" +
-        "                <tr>\n" +
-        "                    <th>Field</th>\n" +
-        "                    <th>Value</th>\n" +
-        "                </tr>" +
         "                <tr>\n" +
         "                    <td>Location</td>\n" +
         "                    <td>" + calendarEvent.location + "</td>\n" +
@@ -142,7 +144,7 @@ function createButtonString(calendarEvent) {
         "                    <path fill-rule=\"evenodd\" d=\"M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z\"/>\n" +
         "                </svg> Edit\n" +
         "            </button>\n" +
-        "            <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteCalendarEvent('" + url + "','" + getCookie('username') + "'," + calendarEvent.id + ")\">\n" +
+        "            <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteCalendarEventInView(" + calendarEvent.id + ");" + "\">\n" +
         "                <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-trash\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
         "                    <path d=\"M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\"/>\n" +

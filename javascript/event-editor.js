@@ -42,7 +42,7 @@ function loadEventIntoForm(calendarEvent) {
     document.getElementById("status").value = calendarEvent.status;
     document.getElementById("allday").value = calendarEvent.allday;
     document.getElementById("webpage").value = calendarEvent.webpage;
-    document.getElementById("image").value = calendarEvent.image;
+    document.getElementById("imageurl").value = calendarEvent.imageurl;
     document.getElementById("categories").value = calendarEvent.categories;
     document.getElementById("extra").value = calendarEvent.extra;
 }
