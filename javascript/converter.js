@@ -1,5 +1,5 @@
-function myFunction(id) {
-	let form=document.getElementById(id);
+function convertFormToObject(id) {
+	let form = document.getElementById(id);
 	
 	let string= "{\n\"name\": \"" + form.elements[0].value + "\",\n";
 	string += "\"location\": \"" + form.elements[1].value + "\",\n";
@@ -12,7 +12,7 @@ function myFunction(id) {
 	string += "\"imagedata\": \"" + form.elements[8].value + "\",\n";
 	string += "\"categories\": [],\n";
 	string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
-	console.log("Yes you're here: " + string)
+	console.log("Form String: " + string)
 	
 	return JSON.parse(string);
 }
