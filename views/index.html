@@ -5,13 +5,12 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="../styles/page.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-
+    <link rel="icon" type="image/png" href="../images/favicon.ico">
 </head>
 <body onload="getData()">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Radical Simplicity</a>
+    <a class="navbar-brand" href="#" onclick="displayListViewPage()">Radical Simplicity</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,6 +39,7 @@
         </nav>
     </div>
 </nav>
+
 <br>
 
 <div id="listViewPage">
@@ -64,7 +64,7 @@
 
 <div id="formPage" style="display: none">
     <div class="container">
-        <form id="createEventForm" action="javascript:createCalendarEvent(url, getCookie('username'), convertFormToObject('createEventForm'))">
+        <form id="createEventForm" action="javascript:addCalendarEventInView(convertFormToObject('createEventForm'))">
             <!--Title-->
             <div class="col-auto">
                 <label class="sr-only" for="title">Title</label>
@@ -245,6 +245,7 @@
         </form>
     </div>
 </div>
+
 <br>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
