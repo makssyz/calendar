@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/connectivity.js"></script>
+    <script src="../javascript/cookie-jar.js"></script>
+    <script src="../javascript/ical-export.js"></script>
+    <script src="../javascript/event-editor.js"></script>
 </head>
-<body>
+<body onload="getData()">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Radical Simplicity</a>
@@ -28,11 +31,13 @@
             <form class="form-inline" action="#">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Account</span>
+                        <span class="input-group-text">Account</span>
                     </div>
-                    <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="login()">Login</button>
+                    </div>
                 </div>
-                <button class="btn btn-outline-success my-2 my-sm-0" onclick="getData()">Login</button>
             </form>
         </nav>
     </div>
@@ -44,7 +49,7 @@
 </div>
 
 <div style="position: fixed; right: 5em; bottom: 5em">
-    <form action="../views/index.html">
+    <form action="form.html">
         <button type="submit" class="btn btn-success">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>

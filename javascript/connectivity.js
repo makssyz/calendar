@@ -40,6 +40,8 @@ function getCalendarEvents(url, user) {
 }
 
 function createCalendarEvent(url, user, event){
+	console.log("Event: " + JSON.stringify(event))
+	console.log("Posting event to " + url + user + "/events")
 	$.post(url + user + "/events", JSON.stringify(event));
 }
 
