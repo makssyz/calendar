@@ -1,16 +1,16 @@
 let url = "http://dhbw.radicalsimplicity.com/calendar/";
-let listView = document.getElementById("calendarListView");
+let view = document.getElementById("calendarListView");
 
-console.log("List View: " + listView)
+console.log("List View: " + view)
 
 function constructCalendarEvent(calendarEvents) {
 
-    listView.innerHTML = "";
+    view.innerHTML = "";
 
     announceWhenListIsEmpty(calendarEvents);
 
     calendarEvents.forEach(calendarEvent => {
-        addEventToHtmlString(listView, calendarEvent)
+        addEventToHtmlString(view, calendarEvent)
     })}
 
 function login() {
@@ -52,7 +52,7 @@ function setUsernameInput(username) {
 
 function announceWhenListIsEmpty(calendarEvents) {
     if (calendarEvents.length === 0) {
-        listView.innerHTML =
+        view.innerHTML =
             "<div class=\"card\">\n" +
             "    <div class=\"card-header\">\n" +
             "        <div class=\"mb-0\">\n" +
