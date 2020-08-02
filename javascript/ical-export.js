@@ -17,7 +17,7 @@ let buildICSEntry = function(calendarEventId){
 };
 
 let makeICS = function(organizerMail, start, end, place, title, description){
-	let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\n";
+	let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//hacksw/handcal//NONSGML v1.0//EN\nBEGIN:VEVENT\n";
 	ics += "ORGANIZER;CN=" + organizerMail + ":MAILTO:" + organizerMail +"\n";
 	ics += "DTSTART:" + start + "\n";
 	ics += "DTEND:" + end + "\n";
