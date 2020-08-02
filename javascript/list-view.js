@@ -31,6 +31,7 @@ function getData() {
     if (username === "") return;
     setUsernameInput(username);
 
+	updateCalendar(host, username);
     getCalendarEvents(host, username).then(function(data) {
         constructCalendarEvent(data);
         console.log(data);
@@ -51,9 +52,13 @@ function addCalendarEventInView(calendarEvent) {
 }
 
 function deleteCalendarEventInView(calendarEventId) {
-    deleteCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId);
-    let deletedEvent = document.getElementById("card" + calendarEventId);
-    deletedEvent.parentElement.removeChild(deletedEvent);
+    deleteCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId).then(function (data) {
+		let deletedEvent = document.getElementById("card" + calendarEventId);
+		deletedEvent.parentElement.removeChild(deletedEvent);
+		deleteCalendarEventInMonthlyView(calendarEventId);
+	}).catch(function (e){
+		console.warn(e);
+	});
 }
 
 function editCalendarEventInView(editedEvent, calendarEventId) {
