@@ -154,7 +154,7 @@ function createTableString(calendarEvent) {
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Image</td>\n" +
-        "                    <td>" + calendarEvent.imageurl + "</td>\n" +
+        "                    <td><img src='" + calendarEvent.imageurl + "'>" + calendarEvent.imageurl + "</td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Categories</td>\n" +
