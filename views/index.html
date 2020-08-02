@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calendar</title>
-    <link rel="stylesheet" href="../styles/page.css">
+    <title>Radical Calendar</title>
+    <link rel="stylesheet" href="../styles/monthly-view.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="../images/favicon.ico">
 </head>
 <body onload="getData()">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" onclick="displayListViewPage()">Radical Simplicity</a>
+    <a class="navbar-brand" href="#" onclick="displayListViewPage()">Radical Calendar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,10 +18,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#" onclick="displayListViewPage()">Event Overview</a>
+                <a class="nav-link" href="#" onclick="displayListViewPage()">Overview</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Month</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" onclick="displayMonthViewPage()">Month</a>
             </li>
         </ul>
         <nav class="navbar navbar-light bg-light">
@@ -45,7 +45,6 @@
 <div id="listViewPage">
     <div class="container" id="mainContainer">
         <div class="accordion" id="calendarListView">
-            Loading...
         </div>
     </div>
 
@@ -59,6 +58,69 @@
                 </svg> Create
             </button>
         </form>
+    </div>
+</div>
+
+<div id="monthViewPage" style="display: none">
+    <div class="content">
+        <div class="calendar-container">
+            <div class="calendar">
+                <div class="year-header">
+                    <span class="left-button" id="prev"> &lang; </span>
+                    <span class="year" id="label"></span>
+                    <span class="right-button" id="next"> &rang; </span>
+                </div>
+                <table class="months-table">
+                    <tbody>
+                    <tr class="months-row">
+                        <td class="month">Jan</td>
+                        <td class="month">Feb</td>
+                        <td class="month">Mar</td>
+                        <td class="month">Apr</td>
+                        <td class="month">May</td>
+                        <td class="month">Jun</td>
+                        <td class="month">Jul</td>
+                        <td class="month">Aug</td>
+                        <td class="month">Sep</td>
+                        <td class="month">Oct</td>
+                        <td class="month">Nov</td>
+                        <td class="month">Dec</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="days-table">
+                    <td class="day">Sun</td>
+                    <td class="day">Mon</td>
+                    <td class="day">Tue</td>
+                    <td class="day">Wed</td>
+                    <td class="day">Thu</td>
+                    <td class="day">Fri</td>
+                    <td class="day">Sat</td>
+                </table>
+                <div class="frame">
+                    <table class="dates-table">
+                        <tbody class="tbody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <form action="javascript:displayFormPage()">
+                        <button type="submit" class="btn btn-success" id="add-button">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                                <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            </svg> Create
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="events-container">
+            <!--Gets filled with events-->
+        </div>
     </div>
 </div>
 
@@ -252,12 +314,12 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="../javascript/connectivity.js"></script>
-<script src="../javascript/event-editor.js"></script>
+<script src="../javascript/form.js"></script>
 <script src="../javascript/converter.js"></script>
 <script src="../javascript/display-manager.js"></script>
-<script src="../javascript/cookie-jar.js"></script>
 <script src="../javascript/ical-export.js"></script>
-<script src="../javascript/view.js"></script>
+<script src="../javascript/list-view.js"></script>
+<script src="../javascript/monthly-view.js"></script>
 
 </body>
 </html>
