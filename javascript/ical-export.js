@@ -1,13 +1,19 @@
 /*jshint esversion: 6 */
-let buildICSEntry = function(event){
-	let title = event.title;
-	let place = event.location;
-	let begin = new Date(event.start);
-	let end = new Date(event.end);
-	let organizer = event.organizer;
-	let description = event.extra;
+let buildICSEntry = function(calendarEventId){
 
-	download(makeICS(organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
+	retrieveCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId)
+		.then(function (event) {
+			let title = event.title;
+			let place = event.location;
+			let begin = new Date(event.start);
+			let end = new Date(event.end);
+			let organizer = event.organizer;
+			let description = event.extra;
+
+			download(makeICS(organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
+		}).catch(function (e) {
+		console.warn(e)
+	});
 };
 
 let makeICS = function(organizerMail, start, end, place, title, description){

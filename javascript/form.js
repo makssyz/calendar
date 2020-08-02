@@ -1,8 +1,15 @@
-function loadUpdateForm(calendarEvent) {
-    displayFormPage();
-    console.log(calendarEvent);
-    loadUpdateButton(calendarEvent);
-    loadEventIntoForm(calendarEvent);
+function loadUpdateForm(calendarEventId) {
+
+    console.log(calendarEventId);
+    retrieveCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId)
+        .then(function (calendarEvent) {
+            displayFormPage();
+            console.log(calendarEvent);
+            loadUpdateButton(calendarEvent);
+            loadEventIntoForm(calendarEvent);
+        }).catch(function (e) {
+        console.warn(e)
+    });
 }
 
 function loadCreateForm() {
@@ -48,7 +55,7 @@ function clearForm() {
     document.getElementById("organizer").value = "";
     document.getElementById("start").value = "";
     document.getElementById("end").value = "";
-    document.getElementById("status").value = "";
+    document.getElementById("status").value = "Free";
     document.getElementById("allday").value = false;
     document.getElementById("webpage").value = "";
     document.getElementById("categories").value = "";

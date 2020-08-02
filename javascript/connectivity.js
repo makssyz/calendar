@@ -43,6 +43,7 @@ function retrieveCalendarEvent(url, user, id) {
 	return new Promise(function (resolve, reject) {
 		jQuery.get(url + user + "/events/" + id)
 			.done(function (data) {
+				console.log("Getting event with ID: " + id)
 				console.log("Getting event from " + url + user + "/events/" + id);
 				resolve(data);
 			})
