@@ -1,4 +1,3 @@
-let url = "http://dhbw.radicalsimplicity.com/calendar/";
 let listView = document.getElementById("calendarListView");
 
 console.log("List View: " + listView)
@@ -28,11 +27,11 @@ function login() {
 function getData() {
 
     let username = sessionStorage.getItem("username");
-    console.log("Getting data from " + url + username + "/events");
+    console.log("Getting data from " + host + username + "/events");
     if (username === "") return;
     setUsernameInput(username);
 
-    getCalendarEvents(url, username).then(function(data) {
+    getCalendarEvents(host, username).then(function(data) {
         constructCalendarEvent(data);
         console.log(data);
     }).catch(function (e) {
@@ -42,7 +41,7 @@ function getData() {
 
 // Wrapper functions for connectivity
 function addCalendarEventInView(calendarEvent) {
-    createCalendarEvent(url, sessionStorage.getItem("username"), calendarEvent)
+    createCalendarEvent(host, sessionStorage.getItem("username"), calendarEvent)
         .then(function() {
             getData();
             displayListViewPage();
@@ -52,13 +51,13 @@ function addCalendarEventInView(calendarEvent) {
 }
 
 function deleteCalendarEventInView(calendarEventId) {
-    deleteCalendarEvent(url, sessionStorage.getItem("username"), calendarEventId);
+    deleteCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId);
     let deletedEvent = document.getElementById("card" + calendarEventId);
     deletedEvent.parentElement.removeChild(deletedEvent);
 }
 
 function editCalendarEventInView(editedEvent, calendarEventId) {
-    updateCalendarEvent(url, sessionStorage.getItem("username"), calendarEventId, editedEvent)
+    updateCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId, editedEvent)
         .then(function() {
             console.log("editedEvent:");
             console.table(editedEvent);

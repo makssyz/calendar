@@ -4,8 +4,8 @@
 //missing validation of attributes
 
 //needed for examples
-//const host= "http://dhbw.radicalsimplicity.com/calendar/";
-//const username= "test";
+
+const host = "http://dhbw.radicalsimplicity.com/calendar/";
 
 jQuery.each( [ "put", "delete" ], function( i, method ) {
   jQuery[ method ] = function( url, data, callback, type ) {

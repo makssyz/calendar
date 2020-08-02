@@ -1,4 +1,3 @@
-
 /* Overall body and content */
 body { 
 	height: 100%;
@@ -92,7 +91,7 @@ body {
 	background: #52A0FD;
 	background: -moz-linear-gradient(left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
 	background: -webkit-linear-gradient(left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
-	background: linear-gradient(to right,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);    
+	background: linear-gradient(to right,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
 	font-family: Helvetica;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	-moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

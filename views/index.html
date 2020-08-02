@@ -45,7 +45,7 @@
 <br>
 
 <div id="listViewPage">
-    <div class="container" id="mainContainer">
+    <div class="container w-75" id="mainContainer">
         <div class="accordion" id="calendarListView">
         </div>
     </div>
@@ -136,7 +136,7 @@
 </div>
 
 <div id="formPage" style="display: none">
-    <div class="container">
+    <div class="container w-50">
         <form id="createEventForm" action="javascript:addCalendarEventInView(convertFormToObject('createEventForm'))">
             <!--Title-->
             <div class="col-auto">
@@ -334,7 +334,7 @@
                             </svg>
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="extra" placeholder="Description">
+                    <textarea class="form-control" id="extra" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="col-auto">

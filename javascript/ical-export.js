@@ -24,7 +24,7 @@ let makeICS = function(organizerMail, start, end, place, title, description){
 };
  
 let download = function(download, filename){
-	var element = document.createElement('a');
+	let element = document.createElement('a');
 	element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + escape(download));
 	element.setAttribute('download', filename);
 
