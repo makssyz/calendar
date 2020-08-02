@@ -32,7 +32,6 @@ var event_data = {
 $(document).ready(preInit(new Date()));
 
 function preInit(date){
-	console.log("check preInit");
 	//var date = new Date();
 	var today = date.getDate();
 
@@ -40,10 +39,8 @@ function preInit(date){
 	$(".right-button").click({date: date}, next_year);
 	$(".left-button").click({date: date}, prev_year);
 	$(".month").click({date: date}, month_click);
-	//$("#add-button").click({date: date}, new_event);
 
 	updateCalendar(host, sessionStorage.getItem("username"));
-	console.table(event_data["events"]);
 	// Set current month as active
 	$(".months-row").children().eq(date.getMonth()).addClass("active-month");
 	init_calendar(date);
@@ -154,7 +151,6 @@ function show_events(events, month, day) {
 	// Clear the dates container
 	$(".events-container").empty();
 	$(".events-container").show(250);
-	console.log(event_data["events"]);
 	// If there are no events for this date, notify the user
 	if(events.length===0) {
 		var event_card = $("<div class='event-card'></div>");
@@ -194,12 +190,13 @@ function check_events(day, month, year) {
 function deleteCalendarEventInMonthlyView(id){
 	let deleted = document.getElementById("event-card-" + id);
 	deleted.parentElement.removeChild(deleted);
-	preInit(new Date(event_data["events"].find(element => element.id == id).start));
+	const date = new Date(event_data["events"].find(element => element.id == id).start);
+	event_data["events"] = event_data["events"].filter(event => event.id != id);
+	preInit(date);
 }
 
 //fill events
 function updateCalendar(host, username) {
-	console.log("Check update");
 	getCalendarEvents(host, username).then(function (data) {
 		event_data["events"]=data;
 	  }).catch(function (e) {
