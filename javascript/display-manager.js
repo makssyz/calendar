@@ -1,6 +1,7 @@
 let listViewPage = document.getElementById("listViewPage")
 let monthViewPage = document.getElementById("monthViewPage")
 let formPage = document.getElementById("formPage")
+let successMessage = document.getElementById("successMessage")
 
 function displayListViewPage() {
     clearAll()
@@ -17,8 +18,13 @@ function displayFormPage() {
     formPage.style.display = "inline"
 }
 
+function showSuccessMessage() {
+    successMessage.style.display = "inline"
+}
+
 function clearAll() {
     listViewPage.style.display = "none"
     monthViewPage.style.display = "none"
     formPage.style.display = "none"
+    successMessage.style.display = "none"
 }
