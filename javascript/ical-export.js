@@ -11,21 +11,26 @@ let buildICSEntry = function(calendarEventId){
 			let organizer = event.organizer;
 			let description = event.extra;
 
-			download(makeICS(organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
+			download(makeICS(calendarEventId, organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
 		}).catch(function (e) {
 		console.warn(e);
 	});
 };
 
-let makeICS = function(organizerMail, start, end, place, title, description){
-	let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\n";
+let makeICS = function(id, organizerMail, start, end, place, title, description){
+	start = start.split("-").join("").split(":").join("").split(".")[0] + "Z";
+	end = end.split("-").join("").split(":").join("").split(".")[0] + "Z";
+	
+	let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//hacksw/handcal//NONSGML v1.0//EN\nBEGIN:VEVENT\n";
+	ics += "UID:uid" + id + "@radicalsimplicity.com\n";
+	ics += "DTSTAMP:" + start + "\n";
 	ics += "ORGANIZER;CN=" + organizerMail + ":MAILTO:" + organizerMail +"\n";
 	ics += "DTSTART:" + start + "\n";
 	ics += "DTEND:" + end + "\n";
 	ics += "LOCATION:" + place + "\n";
 	ics += "SUMMARY:" + title + "\n";
-	if(description != null) ics += "DESCRIPTION:" + description + "\n";
-	ics += "END:VEVENT\nEND:VCALENDAR\n";
+	ics += "DESCRIPTION:" + description + "\n";
+	ics += "END:VEVENT\nEND:VCALENDAR";
 
 	return ics;
 };
