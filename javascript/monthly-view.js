@@ -1,6 +1,4 @@
 function addEventToMonthlyHtmlString(htmlElement, calendarEvent) {
-
-
 htmlElement.innerHTML +=
 	"<div class=\"card-body\">\n" +
 	createTableString(calendarEvent) +
@@ -25,9 +23,17 @@ const months = [
 		"December" 
 ];
 
+// Given data for events in JSON format
+var event_data = {
+	"events": []
+};
+
 // Setup the calendar with the current date
-$(document).ready(function(){
-	var date = new Date();
+$(document).ready(preInit(new Date()));
+
+function preInit(date){
+	console.log("check preInit");
+	//var date = new Date();
 	var today = date.getDate();
 
 	// Set click handlers for DOM elements
@@ -37,12 +43,13 @@ $(document).ready(function(){
 	//$("#add-button").click({date: date}, new_event);
 
 	updateCalendar(host, sessionStorage.getItem("username"));
+	console.table(event_data["events"]);
 	// Set current month as active
 	$(".months-row").children().eq(date.getMonth()).addClass("active-month");
 	init_calendar(date);
 	var events = check_events(today, date.getMonth()+1, date.getFullYear());
 	show_events(events, months[date.getMonth()], today);
-});
+}
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -159,7 +166,7 @@ function show_events(events, month, day) {
 	else {
 		// Go through and add each event as a card to the events container
 		for(var i=0; i<events.length; i++) {
-			var event_card = $("<div class='event-card'></div>");
+			var event_card = $("<div class='event-card' id=event-card-" + events[i].id + "></div>");
 			var event_name = $("<div class='event-name'>"+events[i]["title"]+":</div>");
 			let idString = "tableContainer" + i;
 			var container = $("<div class='accordion' id=" + idString +  "></div>");
@@ -184,13 +191,15 @@ function check_events(day, month, year) {
 	return events;
 }
 
-// Given data for events in JSON format
-var event_data = {
-	"events": []
-};
+function deleteCalendarEventInMonthlyView(id){
+	let deleted = document.getElementById("event-card-" + id);
+	deleted.parentElement.removeChild(deleted);
+	preInit(new Date(event_data["events"].find(element => element.id == id).start));
+}
 
 //fill events
 function updateCalendar(host, username) {
+	console.log("Check update");
 	getCalendarEvents(host, username).then(function (data) {
 		event_data["events"]=data;
 	  }).catch(function (e) {

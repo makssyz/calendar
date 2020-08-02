@@ -39,9 +39,22 @@ function getCalendarEvents(url, user) {
 	});
 }
 
+function retrieveCalendarEvent(url, user, id) {
+	return new Promise(function (resolve, reject) {
+		jQuery.get(url + user + "/events/" + id)
+			.done(function (data) {
+				console.log("Getting event from " + url + user + "/events/" + id);
+				resolve(data);
+			})
+			.fail(function (e) {
+				reject(e);
+			});
+	});
+}
+
 function createCalendarEvent(url, user, event) {
 	return new Promise(function (resolve, reject) {
-		$.post(url + user + "/events", JSON.stringify(event))
+		jQuery.post(url + user + "/events", JSON.stringify(event))
 			.done(function (data) {
 				console.log("Event: " + JSON.stringify(event));
 				console.log("Posting event to " + url + user + "/events");
@@ -54,14 +67,22 @@ function createCalendarEvent(url, user, event) {
 }
 
 function deleteCalendarEvent(url, user, id){
-	console.log("Event ID: " + id)
-	console.log("Deleting event from " + url + user + "/events")
-	$.delete(url + user + "/events" + "/" + id);
+	return new Promise(function (resolve, reject) {
+		jQuery.delete(url + user + "/events" + "/" + id)
+			.done(function (data) {
+				console.log("Event ID: " + id)
+				console.log("Deleting event from " + url + user + "/events")
+				resolve(data);
+			})
+			.fail(function (e) {
+				reject(e);
+			});
+	});
 }
 
 function updateCalendarEvent(url, user, id, event) {
 	return new Promise(function (resolve, reject) {
-		$.put(url + user + "/events" + "/" + id, JSON.stringify(event))
+		jQuery.put(url + user + "/events" + "/" + id, JSON.stringify(event))
 			.done(function (data) {
 				console.log("Event: " + JSON.stringify(event))
 				console.log("Update event to " + url + user + "/events")
