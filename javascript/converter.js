@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 function convertFormToObject(id) {
 	let form = document.getElementById(id);
 
@@ -42,5 +44,4 @@ function convertFormToObject(id) {
 			return JSON.parse(string);
 		});
 	}
-
 }
