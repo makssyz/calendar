@@ -13,6 +13,7 @@ function displayListViewPage() {
 function displayMonthViewPage() {
     clearAll();
     monthViewPage.style.display = "inline";
+	  onTabMonth();
 }
 
 function displayFormPage() {
