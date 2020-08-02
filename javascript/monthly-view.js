@@ -126,6 +126,12 @@ function month_click(event) {
 	init_calendar(date);
 }
 
+function onTabMonth() {
+	$(".events-container").show(250);
+	$("#dialog").hide(250);
+	init_calendar(new Date());
+}
+
 // Event handler for when the year right-button is clicked
 function next_year(event) {
 	$("#dialog").hide(250);
