@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/*jshint scripturl:true*/
+
 function loadUpdateForm(calendarEventId) {
 
     console.log(calendarEventId);
@@ -8,7 +11,7 @@ function loadUpdateForm(calendarEventId) {
             loadUpdateButton(calendarEvent);
             loadEventIntoForm(calendarEvent);
         }).catch(function (e) {
-        console.warn(e)
+        console.warn(e);
     });
 }
 

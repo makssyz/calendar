@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+
 let buildICSEntry = function(calendarEventId){
 
 	retrieveCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId)
@@ -12,7 +13,7 @@ let buildICSEntry = function(calendarEventId){
 
 			download(makeICS(organizer, begin.toJSON(), end.toJSON(), place, title, description), title + ".ics");
 		}).catch(function (e) {
-		console.warn(e)
+		console.warn(e);
 	});
 };
 
@@ -28,7 +29,7 @@ let makeICS = function(organizerMail, start, end, place, title, description){
 
 	return ics;
 };
- 
+
 let download = function(download, filename){
 	let element = document.createElement('a');
 	element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + escape(download));

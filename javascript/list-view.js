@@ -1,6 +1,8 @@
+/*jshint esversion: 6 */
+
 let listView = document.getElementById("calendarListView");
 
-console.log("List View: " + listView)
+console.log("List View: " + listView);
 
 function constructCalendarEvent(calendarEvents) {
 
@@ -9,18 +11,19 @@ function constructCalendarEvent(calendarEvents) {
     announceWhenListIsEmpty(calendarEvents);
 
     calendarEvents.forEach(calendarEvent => {
-        addEventToHtmlString(listView, calendarEvent)
-    })}
+        addEventToHtmlString(listView, calendarEvent);
+    });
+}
 
 function login() {
     let username = document.getElementById("username").value;
 
     if (username === "") {
-        alert("You have not provided a username.")
+        alert("You have not provided a username.");
         return;
     }
 
-    sessionStorage.setItem("username", username)
+    sessionStorage.setItem("username", username);
     getData();
 }
 
@@ -30,7 +33,7 @@ function getData() {
     if (username === "") return;
     document.getElementById("username").value = username;
 
-	updateCalendar(host, username);
+    updateCalendar(host, username);
     getCalendarEvents(host, username).then(function(data) {
         constructCalendarEvent(data);
         console.log(data);
@@ -44,20 +47,20 @@ function addCalendarEventInView(calendarEvent) {
     createCalendarEvent(host, sessionStorage.getItem("username"), calendarEvent)
         .then(function() {
             getData();
-            showSuccessMessage()
+            showSuccessMessage();
         }).catch(function (e) {
-        console.warn(e)
+        console.warn(e);
     });
 }
 
 function deleteCalendarEventInView(calendarEventId) {
     deleteCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId).then(function (data) {
-		let deletedEvent = document.getElementById("card" + calendarEventId);
-		deletedEvent.parentElement.removeChild(deletedEvent);
-		deleteCalendarEventInMonthlyView(calendarEventId);
-	}).catch(function (e){
-		console.warn(e);
-	});
+        let deletedEvent = document.getElementById("card" + calendarEventId);
+        deletedEvent.parentElement.removeChild(deletedEvent);
+        deleteCalendarEventInMonthlyView(calendarEventId);
+    }).catch(function (e){
+        console.warn(e);
+    });
 }
 
 function editCalendarEventInView(editedEvent, calendarEventId) {
@@ -67,9 +70,9 @@ function editCalendarEventInView(editedEvent, calendarEventId) {
             console.table(editedEvent);
             console.log("calendarEventId: " + calendarEventId);
             getData();
-            showSuccessMessage()
+            showSuccessMessage();
         }).catch(function (e) {
-            console.warn(e)
+        console.warn(e);
     });
 }
 
@@ -82,7 +85,7 @@ function announceWhenListIsEmpty(calendarEvents) {
             "                There are no Events for this user.\n" +
             "        </div>\n" +
             "    </div>\n" +
-            "</div>"
+            "</div>";
     }
 }
 
@@ -92,8 +95,8 @@ function addEventToHtmlString(htmlElement, calendarEvent) {
 
 function createHtmlString(calendarEvent) {
     return "<div id=\"card" + calendarEvent.id + "\" class=\"card\">\n" +
-             createContentString(calendarEvent) +
-        "</div>"
+        createContentString(calendarEvent) +
+        "</div>";
 }
 
 function createContentString(calendarEvent) {
@@ -103,7 +106,7 @@ function createContentString(calendarEvent) {
         createTableString(calendarEvent) +
         createButtonString(calendarEvent) +
         "        </div>\n" +
-        "    </div>\n"
+        "    </div>\n";
 }
 
 function createHeaderString(calendarEvent) {
@@ -113,7 +116,7 @@ function createHeaderString(calendarEvent) {
         "                " + calendarEvent.title + "\n" +
         "            </button>\n" +
         "        </h2>\n" +
-        "    </div>\n"
+        "    </div>\n";
 }
 
 function createTableString(calendarEvent) {
@@ -184,5 +187,5 @@ function createButtonString(calendarEvent) {
         "                    <path fill-rule=\"evenodd\" d=\"M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z\"/>\n" +
         "                </svg> Download\n" +
-        "            </button>\n"
+        "            </button>\n";
 }
