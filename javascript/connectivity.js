@@ -131,3 +131,8 @@ function addToCategory(url, user, eventId, categoryId){
 function removeFromCategory(url, user, eventId, categoryId){
 	jQuery.delete(url + user + "/categories/" + categoryId + "/" + eventId);
 }
+
+
+async function addImageToEvent(url, user, eventId, imageObj){
+	return jQuery.post(url + user + "/images/" + eventId, imageObj);
+}
