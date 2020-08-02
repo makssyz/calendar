@@ -8,10 +8,8 @@ function convertFormToObject(id) {
 	string += "\"organizer\": \"" + form.elements[2].value + "\",\n";
 
 	if(form.elements[6].checked){
-		const start = new Date(form.elements[3].value).setHours(0, 0);
-		const end = new Date(form.elements[4].value).setHours(23, 59);
-		string += "\"start\": \"" + start.toJSON() + "\",\n";
-		string += "\"end\": \"" + end.toJSON() + "\",\n";
+		string += "\"start\": \"" + form.elements[3].value.split("T")[0] + "T00:00" + "\",\n";
+		string += "\"end\": \"" + form.elements[4].value.split("T")[0] + "T23:59" + "\",\n";
 	} else {
 		string += "\"start\": \"" + form.elements[3].value + "\",\n";
 		string += "\"end\": \"" + form.elements[4].value + "\",\n";
@@ -30,6 +28,7 @@ function convertFormToObject(id) {
 		console.log("Yes you're here:\n" + string);
 
 		return JSON.parse(string);
+
 	} else {
 		const fr = new FileReader();
 		fr.readAsDataURL(imagePicker.files[0]);
