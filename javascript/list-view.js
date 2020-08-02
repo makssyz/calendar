@@ -64,6 +64,7 @@ function editCalendarEventInView(editedEvent, calendarEventId) {
             console.table(editedEvent);
             console.log("calendarEventId: " + calendarEventId);
             getData();
+            displayListViewPage()
         }).catch(function (e) {
             console.warn(e)
     });

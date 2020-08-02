@@ -1,4 +1,3 @@
-
 function loadUpdateForm(calendarEvent) {
     displayFormPage();
     console.log(calendarEvent);
@@ -8,7 +7,8 @@ function loadUpdateForm(calendarEvent) {
 
 function loadCreateForm() {
     displayFormPage();
-    clearForm()
+    loadCreateButton();
+    clearForm();
 }
 
 function loadUpdateButton(calendarEvent) {
