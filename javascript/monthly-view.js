@@ -1,5 +1,3 @@
-const host = "http://dhbw.radicalsimplicity.com/calendar/";
-
 function addEventToMonthlyHtmlString(htmlElement, calendarEvent) {
 
 
