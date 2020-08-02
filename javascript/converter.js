@@ -4,21 +4,21 @@ function convertFormToObject(id) {
 	let string = "{\n\"title\": \"" + form.elements[0].value + "\",\n";
 	string += "\"location\": \"" + form.elements[1].value + "\",\n";
 	string += "\"organizer\": \"" + form.elements[2].value + "\",\n";
+
 	if(form.elements[6].checked){
-		//allday
-		const start = new Date(form.elements[3].value).setHours(0, 0);
-		const end = new Date(form.elements[4].value).setHours(23, 59);
-		string += "\"start\": \"" + start.toJSON() + "\",\n";
-		string += "\"end\": \"" + end.toJSON() + "\",\n";
-	}else{
+		string += "\"start\": \"" + form.elements[3].value.split("T")[0] + "T00:00" + "\",\n";
+		string += "\"end\": \"" + form.elements[4].value.split("T")[0] + "T23:59" + "\",\n";
+	} else {
 		string += "\"start\": \"" + form.elements[3].value + "\",\n";
 		string += "\"end\": \"" + form.elements[4].value + "\",\n";
 	}
+
 	string += "\"status\": \"" + form.elements[5].value + "\",\n";
 	string += "\"allday\": " + form.elements[6].checked + ",\n";
 	string += "\"webpage\": \"" + form.elements[7].value + "\",\n";
 	string += "\"imagedata\": ";
 	let imagePicker = document.getElementById("imageurl");
+
 	if(!(imagePicker.files && imagePicker.files[0])){
 		string += "null,\n";
 		string += "\"categories\": [],\n";
@@ -26,7 +26,8 @@ function convertFormToObject(id) {
 		console.log("Yes you're here:\n" + string);
 
 		return JSON.parse(string);
-	}else{
+
+	} else {
 		const fr = new FileReader();
 		fr.readAsDataURL(imagePicker.files[0]);
 		fr.onload = (function (data) {

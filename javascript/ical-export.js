@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+
 let buildICSEntry = function(calendarEventId){
 
 	retrieveCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId)
