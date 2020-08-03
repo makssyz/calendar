@@ -154,7 +154,7 @@ function createTableString(calendarEvent) {
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Image</td>\n" +
-        "                    <td>" + calendarEvent.imageurl + "</td>\n" +
+        "                    <td><img src='" + calendarEvent.imageurl + "'></td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Categories</td>\n" +
@@ -187,5 +187,12 @@ function createButtonString(calendarEvent) {
         "                    <path fill-rule=\"evenodd\" d=\"M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z\"/>\n" +
         "                    <path fill-rule=\"evenodd\" d=\"M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z\"/>\n" +
         "                </svg> Download\n" +
+        "            </button>\n" +
+        "            <button type=\"button\" class=\"btn btn-secondary\" onclick='addImage(" + calendarEvent.id + ")'>\n" +
+        "                <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-image\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+        "                  <path fill-rule=\"evenodd\" d=\"M14.002 2h-12a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12z\"/>\n" +
+        "                  <path d=\"M10.648 7.646a.5.5 0 0 1 .577-.093L15.002 9.5V14h-14v-2l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71z\"/>\n" +
+        "                  <path fill-rule=\"evenodd\" d=\"M4.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z\"/>\n" +
+        "                </svg> Add Image\n" +
         "            </button>\n";
 }
