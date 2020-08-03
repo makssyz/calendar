@@ -39,6 +39,12 @@ function loadCreateButton() {
     button.innerText = "Create!";
 }
 
+function isEndBeforeStart() {
+    let start = document.getElementById("start").value;
+    let end = document.getElementById("end").value;
+    return (new Date(start).getTime() > new Date(end).getTime());
+}
+
 function loadEventIntoForm(calendarEvent) {
     document.getElementById("title").value = calendarEvent.title;
     document.getElementById("location").value = calendarEvent.location;
@@ -48,7 +54,6 @@ function loadEventIntoForm(calendarEvent) {
     document.getElementById("status").value = calendarEvent.status;
     document.getElementById("allday").value = calendarEvent.allday;
     document.getElementById("webpage").value = calendarEvent.webpage;
-    document.getElementById("categories").value = calendarEvent.categories;
     document.getElementById("extra").value = calendarEvent.extra;
 }
 
@@ -61,6 +66,5 @@ function clearForm() {
     document.getElementById("status").value = "Free";
     document.getElementById("allday").value = false;
     document.getElementById("webpage").value = "";
-    document.getElementById("categories").value = "";
     document.getElementById("extra").value = "";
 }
