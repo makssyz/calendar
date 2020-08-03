@@ -7,6 +7,7 @@ This is a project for Web Engineering for the second semester.
 Made by:
 - Makss Golubs and
 - Ferdinand König
+
 Lecturer: Danny Amor
 
 ### Monthly-view
