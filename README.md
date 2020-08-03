@@ -10,7 +10,7 @@ Made by:
 Lecturer: Danny Amor
 
 ### Monthly-view
-We want to credit Charles Anderson. Our Monthly-view is an adapted version of his [work](http://https://codepen.io/c4rloscu/pen/XWJNgmg).
+We want to credit Charles Anderson. Our Monthly-view is an adapted version of his [work](https://codepen.io/c4rloscu/pen/XWJNgmg).
 Yet a lot of changes were needed in all parts (HTML, CSS, and especially JS).
 
 ### Bootstrap
