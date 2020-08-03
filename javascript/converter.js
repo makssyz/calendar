@@ -24,7 +24,7 @@ function convertFormToObject(id) {
 	if(!(imagePicker.files && imagePicker.files[0])){
 		string += "null,\n";
 		string += "\"categories\": [],\n";
-		string += "\"extra\": \"" + form.elements[10].value + "\"\n}";
+		string += "\"extra\": \"" + form.elements[9].value + "\"\n}";
 		console.log("Yes you're here:\n" + string);
 
 		return JSON.parse(string);
