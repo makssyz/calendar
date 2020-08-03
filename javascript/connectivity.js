@@ -88,4 +88,7 @@ function updateCalendarEvent(url, user, id, event) {
 				reject(e);
 			});
 	});
+
+async function addImageToEvent(url, user, eventId, imageObj){
+	return jQuery.post(url + user + "/images/" + eventId, imageObj);
 }
