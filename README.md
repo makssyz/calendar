@@ -17,3 +17,6 @@ Yet a lot of changes were needed in all parts (HTML, CSS, and especially JS).
 
 ### Bootstrap
 The designs are based on bootstrap.
+
+## Github
+Project is avaible on https://github.com/makssyz/calendar.
