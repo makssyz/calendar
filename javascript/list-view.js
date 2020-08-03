@@ -44,13 +44,17 @@ function getData() {
 
 // Wrapper functions for connectivity
 function addCalendarEventInView(calendarEvent) {
-    createCalendarEvent(host, sessionStorage.getItem("username"), calendarEvent)
-        .then(function() {
-            getData();
-            showSuccessMessage();
-        }).catch(function (e) {
-        console.warn(e);
-    });
+    if(isEndBeforeStart()) {
+        alert("Start must be before end");
+    } else {
+        createCalendarEvent(host, sessionStorage.getItem("username"), calendarEvent)
+            .then(function() {
+                getData();
+                showSuccessMessage();
+            }).catch(function (e) {
+            console.warn(e);
+        });
+    }
 }
 
 function deleteCalendarEventInView(calendarEventId) {
@@ -64,16 +68,20 @@ function deleteCalendarEventInView(calendarEventId) {
 }
 
 function editCalendarEventInView(editedEvent, calendarEventId) {
-    updateCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId, editedEvent)
-        .then(function() {
-            console.log("editedEvent:");
-            console.table(editedEvent);
-            console.log("calendarEventId: " + calendarEventId);
-            getData();
-            showSuccessMessage();
-        }).catch(function (e) {
-        console.warn(e);
-    });
+    if(isEndBeforeStart()) {
+        alert("Start must be before end");
+    } else {
+        updateCalendarEvent(host, sessionStorage.getItem("username"), calendarEventId, editedEvent)
+            .then(function () {
+                console.log("editedEvent:");
+                console.table(editedEvent);
+                console.log("calendarEventId: " + calendarEventId);
+                getData();
+                showSuccessMessage();
+            }).catch(function (e) {
+            console.warn(e);
+        });
+    }
 }
 
 function announceWhenListIsEmpty(calendarEvents) {
@@ -119,11 +127,25 @@ function createHeaderString(calendarEvent) {
         "    </div>\n";
 }
 
+function showWebpageInTable(webpage) {
+    if(webpage === null) return "";
+    else return webpage;
+}
+
+function showAlldayInTable(allday) {
+    if(allday === true) return "Yes";
+    else return "No";
+}
+
 function createTableString(calendarEvent) {
     let start = new Date(calendarEvent.start);
     let end = new Date(calendarEvent.end);
 
     return "            <table class=\"table table-sm table-striped\">\n" +
+        "                <tr>\n" +
+        "                    <td>Description</td>\n" +
+        "                    <td>" + calendarEvent.extra + "</td>\n" +
+        "                </tr>" +
         "                <tr>\n" +
         "                    <td>Location</td>\n" +
         "                    <td>" + calendarEvent.location + "</td>\n" +
@@ -141,29 +163,21 @@ function createTableString(calendarEvent) {
         "                    <td>" + end.toLocaleString() + "</td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
-        "                    <td>Status</td>\n" +
-        "                    <td>" + calendarEvent.status + "</td>\n" +
+        "                    <td>All Day</td>\n" +
+        "                    <td>" + showAlldayInTable(calendarEvent.allday) + "</td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
-        "                    <td>All Day</td>\n" +
-        "                    <td>" + calendarEvent.allday + "</td>\n" +
+        "                    <td>Status</td>\n" +
+        "                    <td> You're " + calendarEvent.status.toLowerCase() + " at that time</td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Webpage</td>\n" +
-        "                    <td>" + calendarEvent.webpage + "</td>\n" +
+        "                    <td>" + showWebpageInTable(calendarEvent.webpage) + "</td>\n" +
         "                </tr>\n" +
         "                <tr>\n" +
         "                    <td>Image</td>\n" +
-        "                    <td><img src='" + calendarEvent.imageurl + "'>" + calendarEvent.imageurl + "</td>\n" +
+        "                    <td><img src='" + calendarEvent.imageurl + "' alt=''></td>\n" +
         "                </tr>\n" +
-        "                <tr>\n" +
-        "                    <td>Categories</td>\n" +
-        "                    <td>" + calendarEvent.categories + "</td>\n" +
-        "                </tr>\n" +
-        "                <tr>\n" +
-        "                    <td>Description</td>\n" +
-        "                    <td>" + calendarEvent.extra + "</td>\n" +
-        "                </tr>" +
         "            </table>\n";
 }
 

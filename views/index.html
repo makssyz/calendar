@@ -147,7 +147,23 @@
                             </svg>
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="title" placeholder="Title" required>
+                    <input type="text" class="form-control" id="title" placeholder="Title *" maxlength="50" required>
+                </div>
+            </div>
+            <!--Extra-->
+            <div class="col-auto">
+                <label class="sr-only" for="extra">Description</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text"
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                                <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="extra" placeholder="Description"  maxlength="2000"></textarea>
                 </div>
             </div>
             <!--Location-->
@@ -162,7 +178,7 @@
                             </svg>
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="location" placeholder="Location" required>
+                    <input type="text" class="form-control" id="location" placeholder="Location *" maxlength="50" required>
                 </div>
             </div>
             <!--Organizer-->
@@ -177,7 +193,7 @@
                             </svg>
                         </div>
                     </div>
-                    <input type="email" class="form-control" id="organizer" placeholder="Organizer" required>
+                    <input type="email" class="form-control" id="organizer" placeholder="Organizer *" maxlength="50" required>
                 </div>
             </div>
             <!--Start-->
@@ -195,7 +211,7 @@
                     </div>
                     <input type="datetime-local" class="form-control" id="start" required>
                     <div class="input-group-append">
-                        <span class="input-group-text">Start</span>
+                        <span class="input-group-text">Start *</span>
                     </div>
                 </div>
             </div>
@@ -215,7 +231,17 @@
                     </div>
                     <input type="datetime-local" class="form-control" id="end" required>
                     <div class="input-group-append">
-                        <span class="input-group-text">End</span>
+                        <span class="input-group-text">End *</span>
+                    </div>
+                </div>
+            </div>
+            <!--All Day-->
+            <div class="col-auto">
+                <label class="sr-only" for="allday">All Day</label>
+                <div class="input-group mb-2">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="allday">
+                        <label class="custom-control-label" for="allday">All Day Event</label>
                     </div>
                 </div>
             </div>
@@ -240,16 +266,6 @@
 
                 </div>
             </div>
-            <!--All Day-->
-            <div class="col-auto">
-                <label class="sr-only" for="allday">All Day</label>
-                <div class="input-group mb-2">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="allday">
-                        <label class="custom-control-label" for="allday">All Day Event</label>
-                    </div>
-                </div>
-            </div>
             <!--Webpage-->
             <div class="col-auto">
                 <label class="sr-only" for="webpage">Webpage</label>
@@ -262,43 +278,7 @@
                             </svg>
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="webpage" placeholder="Webpage">
-                </div>
-            </div>
-            <!--Image-->
-            <div class="col-auto">
-                <label class="sr-only" for="imageurl">Image</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-image"
-                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                <path d="M10.648 7.646a.5.5 0 0 1 .577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71z"/>
-                                <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imageurl" accept="image/*">
-                        <label class="custom-file-label" for="imageurl">Choose file</label>
-                    </div>
-                </div>
-            </div>
-            <!--Extra-->
-            <div class="col-auto">
-                <label class="sr-only" for="extra">Description</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text"
-                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <textarea class="form-control" id="extra" placeholder="Description"></textarea>
+                    <input type="text" class="form-control" id="webpage" placeholder="Webpage" maxlength="100">
                 </div>
             </div>
             <div class="col-auto">
