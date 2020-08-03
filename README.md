@@ -10,10 +10,10 @@ Made by:
 
 Lecturer: Danny Amor
 
-# Further sources
-## Monthly-view
+## Further sources
+### Monthly-view
 We want to credit Charles Anderson. Our Monthly-view is an adapted version of his [work](https://codepen.io/c4rloscu/pen/XWJNgmg).
 Yet a lot of changes were needed in all parts (HTML, CSS, and especially JS).
 
-## Bootstrap
+### Bootstrap
 The designs are based on bootstrap.
